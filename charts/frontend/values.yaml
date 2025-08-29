@@ -1,0 +1,19 @@
+replicaCount: 2
+
+image:
+  repository: myacr.azurecr.io/frontend
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  className: nginx
+  hosts:
+    - host: frontend.dev.local
+      paths:
+        - path: /
+          pathType: Prefix
